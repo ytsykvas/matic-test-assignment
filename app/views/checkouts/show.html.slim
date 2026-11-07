@@ -1,0 +1,11 @@
+- content_for :title, I18n.t('checkout.show.title')
+.container.py-5
+  h1.h3 = I18n.t('checkout.show.title')
+  p.text-secondary.mb-4 = I18n.t('checkout.show.lead')
+
+  .row.g-4
+    .col-lg-5
+      = render 'scan', products: @products
+      = render 'offers', offers: @offers
+    .col-lg-7
+      = render 'receipt', result: @result

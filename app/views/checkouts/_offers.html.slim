@@ -1,0 +1,5 @@
+.card
+  .card-header.fw-semibold = I18n.t('checkout.show.current_offers')
+  ul.list-group.list-group-flush
+    - offers.each do |offer|
+      li.list-group-item = offer_label(offer)

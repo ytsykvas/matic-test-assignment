@@ -1,0 +1,13 @@
+.card.mb-4
+  .card-header.fw-semibold = I18n.t('checkout.show.scan_products')
+  .card-body
+    .row.row-cols-2.g-2.mb-3
+      - products.each do |product|
+        .col
+          = link_to checkout_with(product.code), class: 'btn btn-outline-primary w-100 text-start' do
+            span.fw-semibold = product.code
+            span.d-block.small = "#{product_name(product.code)} · #{number_to_currency(product.price)}"
+    = form_with url: checkout_path, method: :get, class: 'd-flex gap-2' do |form|
+      = form.text_field :items, value: params[:items], placeholder: I18n.t('checkout.show.items_placeholder'), class: 'form-control', 'aria-label': I18n.t('checkout.show.items_label')
+      = form.submit I18n.t('checkout.show.scan'), class: 'btn btn-primary', name: nil
+      = link_to I18n.t('checkout.show.clear'), checkout_path, class: 'btn btn-outline-secondary'

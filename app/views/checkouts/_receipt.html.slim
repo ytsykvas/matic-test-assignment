@@ -1,0 +1,31 @@
+.card
+  .card-header.fw-semibold = I18n.t('checkout.show.receipt')
+  - if result.unknown_codes.any?
+    .card-body
+      .alert.alert-danger.mb-0 = I18n.t('checkout.show.unknown_codes', codes: result.unknown_codes.join(', '))
+  - elsif result.receipt.items.empty?
+    .card-body.text-center.text-secondary.py-5 = I18n.t('checkout.show.empty')
+  - else
+    table.table.mb-0
+      thead
+        tr
+          th = I18n.t('checkout.show.product')
+          th.text-end = I18n.t('checkout.show.quantity')
+          th.text-end = I18n.t('checkout.show.amount')
+      tbody
+        - result.receipt.items.each do |item|
+          tr
+            td = "#{product_name(item.code)} (#{item.code})"
+            td.text-end = item.quantity
+            td.text-end = number_to_currency(item.subtotal)
+        tr
+          td.text-secondary colspan="2" = I18n.t('checkout.show.subtotal')
+          td.text-end = number_to_currency(result.receipt.subtotal)
+        - result.receipt.discounts.each do |discount|
+          tr
+            td.text-success colspan="2" = offer_label(discount.rule)
+            td.text-success.text-end = number_to_currency(-discount.amount)
+      tfoot
+        tr.fw-semibold
+          td colspan="2" = I18n.t('checkout.show.total')
+          td.text-end = number_to_currency(result.receipt.total)
