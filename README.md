@@ -1,6 +1,19 @@
-# Checkout with discount rules
+# Matic test assignment
 
-A small Rails app for the Matic test assignment: a grocery checkout that scans
+Two tasks, one repository:
+
+- **Task 1 — checkout with discount rules**: the Rails app in this repository
+  (sections "Task 1" to "Deliberately not done").
+- **Task 2 — link shortener proposal**: a document, not code.
+  The proposal is [`docs/link-shortener.md`](docs/link-shortener.md) (Ukrainian
+  version: [`docs/link-shortener.uk.md`](docs/link-shortener.uk.md)); a one-page
+  brief for the Call Center lead is [`public/link-shortener.html`](public/link-shortener.html)
+  (open <http://localhost:3000/link-shortener.html> while the server runs, or
+  open the file in a browser). Details in [Task 2](#task-2-link-shortener-proposal) below.
+
+## Task 1: checkout with discount rules
+
+A small Rails app: a grocery checkout that scans
 product codes, applies the current offers and shows the receipt. The pricing
 logic is plain Ruby; Rails serves one page on top of it, an internal tool to
 validate the current offers. Product codes live in the URL
@@ -90,3 +103,18 @@ rule.apply(items)   # => [Checkout::Discount, ...] or []  items are the basket l
 - A base class for operations: there is one operation.
 - The app was generated with `rails new --minimal --skip-active-record` and the
   generated files that do nothing for this task were removed.
+
+## Task 2: link shortener proposal
+
+The second task asked for a spec, a rough architecture and a rollout plan for
+a link shortener the Call Center team wants, with what it will deliver and
+what it will cost. The answer is a document, not code.
+
+- [`docs/link-shortener.md`](docs/link-shortener.md) is the proposal (with a
+  Ukrainian version in [`docs/link-shortener.uk.md`](docs/link-shortener.uk.md)): the
+  problem in dollars, two options with prices, what will be delivered, a rough
+  architecture, a rollout plan with a pilot, cost and risks. Four pages; the
+  first half-page is the answer.
+- [`public/link-shortener.html`](public/link-shortener.html) is a one-page
+  brief of the same proposal for the Call Center lead. Rails serves it as a
+  static file; it has no dependencies and also opens as a plain file.
